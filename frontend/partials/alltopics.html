@@ -1,0 +1,25 @@
+
+<div>
+	<div class="col-md-8">
+		<h2><a class="heading" ng-href="/yourpositiondial">YOUR POSITIONDIAL</a></h2>
+		<div class="dialpadding" id="dial" pd-include="" src="'dialview.html'" onload="loaded(true, 'visitor')" pd-init="breadcrumbs=true;hidelevels=true" pd-controller="dialCtrl"></div>
+	</div>
+    <div flex="33">
+         <div id="yourlevel" pd-include="" src="'yourlevel.html'" pd-controller></div> 
+         <div id="yourway" pd-include="" src="'yourway.html'" onload="loaded()" pd-controller="yourWayCtrl"></div>  
+    </div>
+	<div class="clearfix visible-ms"></div>    
+	<div flex="33">
+	    <div id="explainer" pd-include="" src="'dialexplain.html'"></div>
+        </div>
+        <div flex="33">
+		<h2><span class="heading">Your Tags</span></h2>
+		<div pd-include="" src="'yourtags.html'" onload="loaded()" pd-controller="yourTagsCtrl"></div>	
+        </div>
+        <div flex="33">
+		<div id="matches" pd-include="" src="'matchpanel.html'" onload="loaded()" pd-controller="matchPanelCtrl"></div>
+	</div>
+	<div class="clearfix visible-ms"></div>
+	<div class="col-md-12" id="statementhistory" pd-include="" src="'statementhistory.html'" onload="loaded()" pd-controller="statementHistoryCtrl"></div>
+	<div class="clearfix visible-ms"></div>
+</div>

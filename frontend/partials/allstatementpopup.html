@@ -1,0 +1,17 @@
+<md-dialog>
+	<md-content style="background-color:#fff" class="outside-border">
+		<div class="pull-right"><i class="fa fa-times" style="font-size:26px; cursor:pointer; padding-right:4px" ng-click="closemodal()"></i></div>
+	    <h2 ng-show="!iscenter()"><a href="{{topic.safelink}}"/>Your positions on {{topic.name}}</a></h2>
+	    <h2 ng-show="iscenter()">Your center positions</h2>
+	    <div style="overflow:none; min-height: 280px; padding-left: 16px; padding-right: 16px; padding-bottom: 16px">
+		    <div ng-repeat="statement in statements" style="padding-top: 7px">
+			    <div class="leftrightconversation md-padding">
+					<div class="close" ng-click="closemodal()">	  
+		 			<a ng-click="go('/all/-1/-/'+statement.id+'/-')"> <b><i>{{mapreaction(statement.reaction)}}</i></b> {{statement.text}}</a> 
+				    </div>
+				</div>    
+	        </div>
+	    </div>
+	</md-content>
+</md-dialog>
+

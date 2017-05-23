@@ -1,0 +1,22 @@
+   
+<md-card style="max-width:500px; min-width:250px; width:100%; margin:auto 0px; white-space:normal;position:relative; background-color:white !important" 
+		ng-click="gonewtab(homeitem.link)" class="rectcard">
+    <div layout="row">
+       <pd-img flex ng-src="{{mediaimg(homeitem)}}" aspect-ratio="1.0" natural-width="100" natural-height="100" 
+            pd-img-default="{{defaultimg()}}" pd-overlay="{{mediaoverlay(homeitem)}}"></pd-img>
+       <div flex style="position:relative" layout="center center" layout="column" class="md-padding"> 
+       			<span style="" ng-bind="homeitem.headline" class="md-padding"></span>
+       			<div ng-if="homeitem.readat" class="md-padding" 
+       				style="text-align:right; position:absolute; bottom:0px; right:0px; white-space:nowrap">
+       					read: <span ng-bind="homeitem.readat | nicetime"></span>
+       			</div>
+       	</div> 
+	</div>
+	<md-card-content style="position:relative; width:100%; padding:0px; border-top:1px solid #ddd">
+	    <div style="vertical-align:middle" class="md-padding">
+	       <span style="font-weight:bold;text-transform: capitalize" ng-bind="homeitem.author.name"></span>
+	       |
+	       <span style="font-weight:bold;text-transform: capitalize" ng-bind="homeitem.source.name"></span>	   
+	    </div>
+	</md-card-content>
+</md-card>

@@ -1,0 +1,40 @@
+<div ng-switch on="ascard">
+<md-card ng-switch-when="true" style="max-width:500px; min-width:250px; margin:auto; white-space:normal" layout="row">
+	<div style="width:40%">
+		<pd-img pd-src="{{img(174, 100)}}" style="margin:10px auto 0px auto" pd-overlay="trophy.svg" pd-overlay-shrink="60" pd-overlay-top="10"
+        	pd-img-default="white.png" pd-fill natural-width="350" natural-height="263"/></pd-img>
+		<div style="text-align:center; padding:8px 2px; font-size:0.8em"><span ng-bind="timestamptext()"></span></div>
+	</div>
+	<md-card-content style="position:relative; width:60%; padding-top:5%; padding-right:1%">
+		<div style="vertical-align:middle"><span style="font-weight:bold" ng-bind="header()"></span></div>
+		<div style="padding-top:10px;vertical-align:middle"><span style="font-weight:bold" ng-bind="message()"></span></div>
+		<div class="sharebuttons">
+			<md-button md-no-ink flex class="md-accent md-raised md-hue-3 twsubtle" ng-click="sharebadge('tw')" layout="row" layout-align="center center">
+	   			<i class="fa fa-twitter"></i>
+			</md-button>
+			<md-button md-no-ink flex class="md-accent md-raised md-hue-2 fbsubtle" ng-click="sharebadge('fb')" layout="row" layout-align="center center">
+	   			<i class="fa fa-facebook"></i>
+			</md-button>
+		</div>
+	</md-card-content>
+</md-card>
+<md-card ng-switch-when="false" style="max-width:500px; min-width:250px; margin:auto; white-space:normal">
+	<div>
+		<pd-img pd-src="{{img(174, 100)}}" style="margin:10px auto 0px auto; width:100%" pd-overlay="trophy.svg" pd-overlay-shrink="60" pd-overlay-top="10"
+        	pd-img-default="white.png" natural-width="174" natural-height="100"/></pd-img>
+	</div>
+	<md-card-content style="position:relative">
+		<div style="text-align:center"><span style="font-weight:bold" ng-bind="header()"></span></div>
+		<div style="text-align:center"><span style="font-weight:bold" ng-bind="message()"></span></div>
+		<div style="font-size:0.8em"><span ng-bind="timestamptext()"></span></div>
+		<div class="sharebuttons">
+			<md-button md-no-ink flex class="md-accent md-raised md-hue-3 twsubtle" ng-click="sharebadge('tw')" layout="row" layout-align="center center">
+	   			<i class="fa fa-twitter"></i>
+			</md-button>
+			<md-button md-no-ink flex class="md-accent md-raised md-hue-2 fbsubtle" ng-click="sharebadge('fb')" layout="row" layout-align="center center">
+	   			<i class="fa fa-facebook"></i>
+			</md-button>
+		</div>
+	</md-card-content>
+</md-card>
+</div>

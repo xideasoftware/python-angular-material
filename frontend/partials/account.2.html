@@ -1,0 +1,145 @@
+
+<div ng-hide="isloggedin" layout layout-align="center center">
+	<div hide-sm hide-md>
+		<h2 style="text-decoration: none; border-bottom:0px">
+			<a ng-click="registerorsignin=false">Create an account</a>
+			<a ng-click="registerorsignin=true" class="highlight">Already Registered?</a>
+		</h2>
+	</div>
+</div>
+<div layout-gt-sm="row" ng-if="!isloggedin">
+  <div flex-gt-sm="50" layout-gt-sm="column" class="md-padding">
+	<md-card style="" class="md-padding">
+		<md-toolbar class="header" style="; background-color:transparent">
+			<h2><a ng-click="registerorsignin=false">Register</a> <a ng-click="registerorsignin=true" class="highlight">Sign-in</a></h2>
+		</md-toolbar>
+		<div ng-if="!registerorsignin">
+		  <md-input-container> <label>Username</label> <input type="text" name="username" id="username" value="" placeholder="Enter Username (minimum five characters)"
+			ng-model="data.username"> </md-input-container>
+		  <md-input-container> <label>Email</label> <input type="text" name="email_address" id="email_address" value="" placeholder="Enter Email Address"
+			ng-model="data.email"> </md-input-container>
+		  <md-input-container> <label>Password</label> <input type="password" name="password" id="password" value=""
+			placeholder="Enter Password (minimum six characters)" ng-model="data.password"> </md-input-container>
+		  <md-input-container> <label>Password Confirmation</label> <input type="password" name="password_c" id="password_c" value=""
+			placeholder="Enter Password Again" ng-model="data.repassword"> </md-input-container>
+		  <md-content class="md-padding" layout="row" layout-sm="column" layout-md="column" layout-lg="column" layout-align="center center" style="overflow:hidden">
+			<md-button md-no-ink ng-click="signmeup()" class="md-raised md-warn" layout layout-align="center center" style="min-width:200px"> 
+				<div layout="row" layout-align="start center">
+				<img style="padding: 0px; height:20px; width:20px; margin:0px 4px 0px 0px" ng-src="/img/logosymbol.svg"></img>
+          		<div>Register</div>
+          		</div>
+			</md-button>
+		  </md-content>         
+          <div layout="row" layout-align="center center">
+          	<md-checkbox name="check" id="check" ng-model="data.iagree" style="text-decoration: none; cursor: pointer;padding:0px; max-height:30px">
+			</md-checkbox>
+			<div>
+			I have read the&nbsp;<a href="/privacyandterms" style="" target="_blank">Terms &amp;
+				Privacy </a>
+			</div>
+          </div>
+		</div>
+		<div ng-if="registerorsignin">
+			<md-input-container> <label>Username</label> <input type="text" name="username" id="username" value="" onkeyup="checkCookie();" placeholder="Enter Username"
+				ng-model="usernamesignin.username"> </md-input-container>
+			<md-input-container> <label>Password</label> <input type="password" name="password" id="password" value="" onfocus="this.value=''"
+				placeholder="Enter Password" ng-model="usernamesignin.password"> </md-input-container>
+			<md-content class="md-padding" layout="row" layout-sm="column" layout-md="column" layout-lg="column" layout-align="center center" style="overflow:hidden">
+			  <md-button md-no-ink ng-click="signin()" class="md-raised md-warn" layout layout-align="center center" style="min-width:200px"> 
+				<div layout="row" layout-align="start center">
+				<img style="padding: 0px; height:20px; width:20px; margin:0px 4px 0px 0px" ng-src="/img/logosymbol.svg"></img>
+          		<div>Sign In</div>
+          		</div>
+			  </md-button>
+			  <md-checkbox id="remember" value="1" name="remember" onclick="callcookie();" style="text-decoration: none;padding:0px; max-height:30px">
+				<span class="">Remember Me</span>
+			  </md-checkbox>
+			</md-content>
+			<md-content class="md-padding" layout="row" layout-sm="column" layout-md="column" layout-lg="column" layout-align="center center" style="overflow:hidden">
+	        	<md-button md-no-ink class="md-raised" ng-click="resetpassword()" style=" max-width:280px">Forgot Password?</md-button>
+			</md-content>
+		</div>
+	</md-card>
+  </div>
+  <div flex-gt-sm="50" layout-gt-sm="column" class="md-padding">
+  	<md-card class="md-padding" style="margin-bottom:10px">
+		<md-toolbar class="header" style="background-color:white">
+			<h2>Social Sign-in</h2>
+		</md-toolbar>
+		<md-content class="md-padding" layout="row" layout-sm="column" layout-margin layout-align="center space-around" style="overflow:hidden">
+			<md-button md-no-ink flex class="md-accent md-raised md-hue-3" ng-click="gooffsite('/login/tw')" style=""> 
+              <i class="fa fa-twitter" style="color:#fff;padding:0px 4px 0px 0px"></i>Sign in with Twitter
+			</md-button>
+			<md-button md-no-ink flex class="md-accent md-raised md-hue-2" ng-click="gooffsite('/login/fb')" style="">
+              <i class="fa fa-facebook" style="color:#fff;padding:0px 4px 0px 0px"></i>Sign in with Facebook
+         	</md-button>
+		</md-content>
+	</md-card>
+  	<div class="md-padding">
+		<md-toolbar class="header" style="; background-color:transparent">
+			<h2>Why Sign-up?</h2>
+		</md-toolbar>
+		<div>
+          <ul>
+            <li>Save your PositionDial</li>
+          	<li>Come back and check your election matches as candidates complete their profiles</li>
+            <li>Stay up to date with news, opinions and Positions across the spectrum</li>
+			<li>
+				Get your own tailored antibod media recommendations
+			</li>
+          	<li>See which articles you've already read / watched on the different sides of the story</li>
+            <li>Keep comparing to your friends' Positions as you build your Dial</li>
+          </ul>
+			<p>
+				<i>If you sign up with email please remember to check your messages and click the link to verify your account </i>
+			</p>
+		  
+          </div>
+  		</div>
+	</div>  
+</div>
+<div layout-gt-sm="column" ng-if="!isloggedin">
+	<div flex id="testimonial" pd-include="" src="'testimonial.html'"></div>
+	<div class="md-padding" layout="column" layout-gt-sm="row" layout-align="center space-around" fill-layout>
+    	<md-button flex md-no-ink ng-click="registerorsignin=false" class="md-raised md-primary gamebutton">Already Registered?  Sign-in</md-button>
+    </div>
+</div>
+<div ng-if="isloggedin" pd-include src='accountdetails.html'></div>
+
+
+
+<div ng-if="isloggedin" flex>
+	<h2>More about you</h2>
+	<div layout-gt-sm="row"> 
+	   <div flex-gt-sm="33" layout layout-fill>
+	   <md-card flex style="min-height:100%"> 
+	   	 <md-button style="min-height:100%;min-width:100%" class="md-padding" href="/yourpositiondial">
+		     <h2>Your PositionDial</h2>
+	    	 <pd-img src="dialb.png" style="width:50%;margin:auto" needed-ratio="0.6" natural-width="1871" natural-height="1300"></pd-img>  
+	     	 
+	   	 </md-button>
+	   </md-card>
+	  </div>
+	    
+	  <div flex-gt-sm="33" layout layout-fill>
+	   <md-card flex style="min-height:100%"> 
+	   	 <md-button style="min-height:100%;min-width:100%" class="md-padding" href="/progress">
+		     <h2>Your Progress</h2>
+	    	<pd-img src="chartg.png" style="width:50%;margin:auto" needed-ratio="0.6" natural-width="246" natural-height="246"></pd-img>   
+	     	 
+	   	 </md-button>
+	   </md-card>
+	  </div>
+	      
+	  <div flex-gt-sm="33" layout layout-fill>
+	   <md-card flex style="min-height:100%"> 
+	   	 <md-button style="min-height:100%;min-width:100%" class="md-padding" href="/media">
+		     <h2>Your articles</h2>
+	    	 <pd-img src="discoversides.png" style="width:50%;margin:auto" needed-ratio="0.6" natural-width="609" natural-height="609"></pd-img>  
+	 
+	   	 </md-button>
+	   </md-card>
+	  </div>
+	   
+	</div> 
+</div>

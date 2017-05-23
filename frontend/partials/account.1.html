@@ -1,0 +1,70 @@
+<div class = "splash"  ng-controller = "accountCtrl " >
+	<div id="registration form" pd-include="" src="'accountb.html'" onload="loaded()" pd-controller="accountCtrl" ></div>
+	<div   flex-gt-sm="50" layout-gt-sm="column" class="md-padding"  layout-align="center center" hide-sm>
+	 	<div flex-gt-sm="50" layout-gt-sm="column" class="md-padding"  layout-align="center center" style=" background-color:#fff; width:600px;">
+			<div class="md-padding" style="width: 500px; ">
+				<h2>Why Sign-In?</h2>
+				<div>
+					<ul>
+						<li>Save your PositionDial</li>
+						<li>Check back on your latest brand matches</li>
+						<li>Keep comparing to your friends as you build your Dial</li>
+						<li>Access your antibod (to challenge your positions) anytime</li>
+					</ul>
+					<p>
+						<i>If you sign up with email please remember to follow the link to verify your account </i>
+					</p>
+				</div>
+			</div>
+		</div>
+	
+		<div flex-gt-sm="50" layout-gt-sm="column" class="md-padding"  layout-align="center center" style=" background-color:#fff; width:600px;">
+			<div class="md-padding" style="width: 500px; " ng-hide="testimonials">
+			    </br></br>
+				<h2><a href="" ng-click="showtestimonials()">Why are people using PositionDial?</a></h2>
+			</div>
+			<div class="md-padding" style="width: 500px; " ng-show="testimonials">
+				<div id="testimonial" pd-include="" src="'testimonial.html'" onload="loaded()" class="md-padding" ></div>
+			</div>
+			<div ng-show="testimonials">
+				<p><a href="" ng-click="hidetestimonials()">Close this</a></p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div ng-if="isloggedin" pd-include src='accountdetails.html'></div>
+
+<div ng-if="isloggedin" flex >
+	<h2>More about you</h2>
+	<div layout-gt-sm="row">
+	  
+		<div flex-gt-sm="33" layout layout-fill>
+		    <md-card flex style="min-height:100%"> 
+		   	    <md-button style="min-height:100%;min-width:100%" class="md-padding" href="/yourpositiondial">
+				    <h2>Your PositionDial</h2>
+			    	<pd-img src="dialb.png" style="width:50%;margin:auto" needed-ratio="0.6" natural-width="1871" natural-height="1300"></pd-img>  
+		   	    </md-button>
+		    </md-card>
+		</div>
+	  
+		<div flex-gt-sm="33" layout layout-fill>
+		    <md-card flex style="min-height:100%"> 
+			   	<md-button style="min-height:100%;min-width:100%" class="md-padding" href="/progress">
+				    <h2>Your Progress</h2>
+			    	<pd-img src="chartg.png" style="width:50%;margin:auto" needed-ratio="0.6" natural-width="246" natural-height="246"></pd-img>   
+			   	</md-button>
+		    </md-card>
+		</div>
+
+		<div flex-gt-sm="33" layout layout-fill>
+		    <md-card flex style="min-height:100%"> 
+			   	<md-button style="min-height:100%;min-width:100%" class="md-padding" href="/media">
+				    <h2>Your articles</h2>
+			    	<pd-img src="discoversides.png" style="width:50%;margin:auto" needed-ratio="0.6" natural-width="609" natural-height="609"></pd-img>  
+			   	</md-button>
+		    </md-card>
+		</div>
+	</div>
+</div>
+ 

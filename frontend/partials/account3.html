@@ -1,0 +1,52 @@
+<div  style="background-color: green;" >
+	<div  flex-gt-sm="10" layout-gt-sm="row" class="md-padding" hide-sm>
+		<div class="md-padding" style="width: 500px; background-color:#fff; padding-top: 100px;" >
+			<md-toolbar>
+			<h2>Why Sign-up?</h2>
+			</md-toolbar>
+			<div>
+				<ul>
+					<li>Save your PositionDial</li>
+					<li>Check back on your latest brand matches</li>
+					<li>Keep comparing to your friends as you build your Dial</li>
+					<li>Access your antibod (to challenge your positions) anytime</li>
+				</ul>
+				<p>
+					<i>If you sign up with email please remember to follow the link to verify your account </i>
+				</p>
+			</div>
+		</div>
+	</div>
+	<div id="registration form" pd-include="" src="'accountA.html'" onload="loaded()" pd-controller="accountCtrl" class="md-padding"></div>
+	<div ng-if="isloggedin" pd-include src='accountdetails.html'></div>
+	<div ng-if="isloggedin" flex>
+		<h2>More about you</h2>
+		<div layout-gt-sm="row">
+	        <div flex-gt-sm="33" layout layout-fill>
+			    <md-card flex style="min-height:100%"> 
+				   	<md-button style="min-height:100%;min-width:100%" class="md-padding" href="/yourpositiondial">
+					    <h2>Your PositionDial</h2>
+				    	<pd-img src="dialb.png" style="width:50%;margin:auto" needed-ratio="0.6" natural-width="1871" natural-height="1300"></pd-img>  
+				   	</md-button>
+			   	</md-card>
+			</div>
+		    <div flex-gt-sm="33" layout layout-fill>
+			    <md-card flex style="min-height:100%"> 
+			   		<md-button style="min-height:100%;min-width:100%" class="md-padding" href="/progress">
+				    <h2>Your Progress</h2>
+			    	<pd-img src="chartg.png" style="width:50%;margin:auto" needed-ratio="0.6" natural-width="246" natural-height="246"></pd-img>   
+			   	    </md-button>
+			    </md-card>
+			</div>
+     
+			<div flex-gt-sm="33" layout layout-fill>
+			    <md-card flex style="min-height:100%"> 
+			   	    <md-button style="min-height:100%;min-width:100%" class="md-padding" href="/media">
+				        <h2>Your articles</h2>
+			    	    <pd-img src="discoversides.png" style="width:50%;margin:auto" needed-ratio="0.6" natural-width="609" natural-height="609"></pd-img>  
+			   	    </md-button>
+			    </md-card>
+			</div>
+		</div>
+	</div>
+</div> 

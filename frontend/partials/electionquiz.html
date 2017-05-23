@@ -1,0 +1,124 @@
+
+<div class="md-padding">
+	<md-toolbar class="header md-padding">
+	<h2>Election 2015 (PPCs only)</h2>
+	</md-toolbar>
+</div>
+<div class="md-padding"> 
+<md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex" md-on-select="setselectedindex(1)" class="whiteout" ng-show="author != null"> 
+	<md-tab	md-on-select="setselectedindex(0)" label="Start" style="background-color:white; color:black; overflow-x:none"> 
+		<md-card class="md-padding">
+<p>
+	Hello <span ng-bind="author.name"></span>, PPC for <span ng-bind="author.constituency"></span> and welcome!
+</p>
+<p>PositionDial is the UK's most engaging Voter Advice Application. 43% of people not intending to vote say PositionDial has made them more likely to do so. Just run through
+	our quick quiz, then voters can start matching to you.</p>
+<div layout="row" layout-fill layout-margin>
+	<div flex layout layout-fill>
+		<md-card flex style="min-height:100%"> <md-button class="md-padding" ng-click="setselectedindex(1)" style="white-space:normal;min-height:100%;min-width:100%">
+		<div>
+			<pd-img flex src="logocentreBLACK.png" style="width:45%;margin:auto" needed-ratio="0.4" natural-width="400" natural-height="400"></pd-img>
+		</div>
+		<p flex style="white-space: normal">Agree or disagree on the issues</p>
+		</md-button> </md-card>
+	</div>
+	<div flex layout layout-fill>
+		<md-card flex style="min-height:100%"> <md-button flex style="min-height:100%;min-width:100%" class="md-padding" ng-click="setselectedindex(2);startgame()"
+			style="white-space:normal">
+		<div>
+			<pd-img src="comment.png" style="width:35%;margin:auto" needed-ratio="0.4" natural-width="256" natural-height="221"></pd-img>
+		</div>
+		<p style="white-space: normal">Add a personal statement</p>
+		</md-button> </md-card>
+	</div>
+	<div flex layout layout-fill>
+		<md-card flex style="min-height:100%"> <md-button flex style="min-height:100%;min-width:100%" ng-click="goauthorprofile()" style="white-space:normal">
+		<div>
+			<pd-img src="user1.png" style="width:45%;margin:auto" needed-ratio="0.4" natural-width="256" natural-height="256"></pd-img>
+		</div>
+		<p style="white-space: normal">See your profile</p>
+		</md-button> </md-card>
+	</div>
+</div>
+<div class="md-padding" layout="column" layout-gt-sm="row" layout-align="center space-around" fill-layout layout-wrap>
+	<md-button md-no-ink class="md-raised md-primary gamebutton" ng-click="setselectedindex(1)">Start</md-button>
+</div>
+</br>
+<p>TO NOTE</p>
+<em>
+	<ul>
+		<li>You can skip questions but we encourage you to answer as many as you can.</li>
+		<li>If you change your mind - you can easily come back and change your responses anytime - even after submission.</li>
+		<li>Your personal statement is optional and for anything else you would like voters to know about why they should vote for you, including views on local issues.</li>
+		<li>We are working in partnership with The University of Westminster Center for the Study of Democracy and YourNextMP, run by <a href="https://democracyclub.org.uk/">Democracy
+				Club</a>, who were responsible for the largest ever candidate survey in advance of the 2010 General Election.
+		</li>
+		<li>Your profile here will go live week commencing 6th April and display the photo and contact details held on <a href="https://yournextmp.com/">YourNextMP</a>.
+		</li>
+		<li>If you would like to invite another PPC to get their PositionDial, please email us and we will send them their own unique link directly. Do not send them this link.</li>
+	</ul>
+	<p>
+		(You have arrived here via a link designed just for the use of <span ng-bind="author.name"></span>. If you are not <span ng-bind="author.name"></span> please do not continue any
+		further.)
+	</p>
+</em>
+</md-card>
+</md-tab> 
+
+
+<md-tab md-on-select="setselectedindex(1)" label="Quiz" style="background-color:white; color:black"> Please answer as many as you can:
+<table style="width:100%; padding-top:5px">
+	<tr ng-repeat="tspairs in statements" class="md-padding" style="min-height: 205px; height: 205px">
+		<td ng-repeat="ts in tspairs track by ts.id" style="max-width: 100%; width: 350px; min-width: 270px; margin: auto" class="md-padding">
+			<div class="md-padding">
+				<md-card style="background-color:white !important; max-width:360px">
+				<div style="display: table; height: 100%; width: 100%; min-height: 140px; position: relative">
+					<div class="md-padding" style="text-align: center; vertical-align: middle; display: table-cell; padding-bottom: 20px">
+						<span ng-bind="ts.text" style="font-size: 1.0em; font-weight: bold"></span>
+					</div>
+					<div style="font-size: 0.8em; text-align: right; position: absolute; z-index: 50; bottom: -2px; right: 5px" class="md-padding">{{ts.index+1}} / {{totalstatements}}</div>
+				</div>
+				<md-card-content style="background-color:#eee">
+				<table style="width: 100%">
+					<tbody>
+						<tr class="statement-voting">
+							<td ng-repeat="p in [2,1,0,-1,-2]" style="width: 20%"><md-button md-no-ink class="md-raised reactionbutton md-primary" ng-click="reactrefresh(ts,p)"
+									ng-class="{'md-warn':havevoted(ts,p)}" ng-bind="buttontext[2-p]" style="white-space:normal;text-align:center;width:100%;height:40px;font-size:0.75em;"> </md-button></td>
+						</tr>
+					</tbody>
+				</table>
+				</md-card-content> </md-card>
+			</td>
+		</div>
+	</tr>
+</table>
+<div class="md-padding" layout="column" layout-gt-sm="row" layout-align="center space-around" fill-layout layout-wrap>
+	<md-button md-no-ink class="md-raised md-primary gamebutton" ng-click="finished();">Finished</md-button>
+</div>
+</md-tab> <md-tab md-on-select="setselectedindex(2)" label="Thank You!" style="background-color:white; color:black"> <md-card style="margin-top:10px"
+	class="md-padding">
+<p>Thank You!</p>
+<p>Please add your personal statement:</p>
+<p>
+	<em>Your personal statement is optional and for anything else you would like voters to know about why they should vote for you, including your views on local issues</em>
+</p>
+
+<md-input-container> <label>Type text here</label> <textarea placeholder="Your Text" ng-model="data.personalstatement" columns="1" rows="4" md-maxlength="2048"
+	style="min-height: 55px; height: 55px"></textarea> </md-input-container> 
+
+<div id="statementsaved" ng-show="havesavedstatement">Statement has been saved</div>
+
+<div><em>We are sorry but some people have had trouble saving their statements. You will see "Statement has been saved" 
+above when your statement is saved. If this does not appear please email your statement directly to mariam@positiondial.com</em></div>
+
+</md-card>
+<div class="md-padding" layout="column" layout-gt-sm="row" layout-align="center space-around" fill-layout layout-wrap>
+	<md-button md-no-ink class="md-raised md-primary gamebutton" ng-click="savestatement(true)">Save Statement</md-button>
+	<md-button md-no-ink class="md-raised md-primary gamebutton" ng-click="setselectedindex(1);">Change Responses</md-button>
+	<md-button md-no-ink class="md-raised md-primary gamebutton" ng-click="goauthorprofile()" tooltip="Please allow up to 24 hours for your profile to update">See Profile</md-button>
+</div>
+</md-tab> 
+</md-tabs>
+<div style="margin-bottom: 200px"></div>
+</div>
+

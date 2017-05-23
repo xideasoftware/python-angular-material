@@ -1,0 +1,21 @@
+
+<div>
+	<div class="col-md-8">
+		<h2>Your Dial</h2>
+    	<div id="voting" pd-include="" src="'voting.html'" onload="loaded()" pd-controller="votingCtrl"></div>
+		<div class="dialpadding" id="dial" pd-include src='basepartialurl+"dialview.html"' onload="loaded(true, 'visitor')" 
+			pd-init="breadcrumbs=true;hidelevels=true" pd-controller="dialCtrl"></div>
+	</div>
+	<div flex="33">
+		<h2><span ng-bind="data.client.name"></span></h2>
+		<div pd-include src='basepartialurl+"clientlogo.html"' onload="loaded()" pd-controller="logoCtrl" ng-show="showlogo"></div>	
+	</div>
+	<div flex="33">
+		<h2>Your Tags</h2>
+		<div pd-include src='basepartialurl+"yourtags.html"' onload="loaded()" pd-controller="yourTagsCtrl"></div>	
+		<div id="matches" pd-include src='basepartialurl+"matchpanel.html"' onload="loaded()" pd-controller="matchPanelCtrl"></div>
+	</div>
+	<div class="clearfix visible-ms"></div>
+	<div class="width:100%" id="statementhistory" pd-include src='basepartialurl+"statementhistory.html"' onload="loaded()" pd-controller="statementHistoryCtrl"></div>
+	<div class="clearfix visible-ms"></div>
+</div>

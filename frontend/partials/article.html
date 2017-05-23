@@ -1,0 +1,14 @@
+
+<div>
+	<div class="col-lg-8" id="articleItem" pd-include="" src="'articleitem.html'" onload="loaded()" pd-controller="articleItemCtrl"></div>
+	<div class="col-lg-4">
+		<div id="saveyours" pd-include="" src="'saveyoursiconstext.html'" onload="loaded()" pd-controller="saveYoursCtrl"></div>
+		<div id="dial" class="" pd-include="" src="'dialonecolumnwidescreen.html'" onload="loaded(true, 'visitor', -1, topic.id, 3)" pd-controller="dialCtrl"></div>
+		<div id="matches" pd-include="" src="'matchpanel.html'" onload="loaded()" pd-controller="matchPanelCtrl"></div>
+	        <div id="explainer" pd-include="" src="'contentexplainerpanel.html'"></div>
+		<div id="latestarticles" pd-include="" src="'latestarticles.html'" onload="loaded( false, topic.id )" pd-controller="latestArticleCtrl"></div>
+		<div id="relatedtopics" pd-include="" src="'relatedtopics.html'" onload="loaded( false, topic.id )" pd-controller="relatedTopicsCtrl"></div>
+	</div>
+</div>
+<div class="col-md-12" id="positionaxis" pd-include="" src="'positionaxis.html'" onload="loaded(topic.id )" pd-controller="positionAxisCtrl"></div>
+<div class="col-md-12" id="articlearchive" pd-include="" src="'articlearchive.html'" onload="loaded()" pd-controller="articleArchiveCtrl"></div>

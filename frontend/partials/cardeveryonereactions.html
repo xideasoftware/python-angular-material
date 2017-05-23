@@ -1,0 +1,51 @@
+
+<md-card style="max-width:500px; min-width:250px; width:100%; margin:auto 0px; white-space:normal;position:relative; background-color:white !important">
+	<div style="position:relative">
+			<div class="videoWrapper votingcontent" style="padding-bottom: 48%" ng-style="{ 'background-image' : 'url('+articleimg(homeitem)+')'}">
+								<img/>
+			</div>
+			<div layout="column" style="position:absolute; left:0px; top:0px; z-index:5; height:100%; width:100%; background-color: rgba(255, 255, 255, 0.7);">
+				<div layout style="height:32px;position:absolute; width:100%">
+					<span style="font-weight:bold" class="md-padding"></span>
+					<div class="sharebuttons" style="position:relative; bottom:0px; right:0px; width:100%">
+						<md-button md-no-ink flex class="md-accent md-raised md-hue-3 twsubtle" 
+							ng-click="fireshare('sharestatement', homeitem, 'tw')" 
+							layout="row" layout-align="center center" style="">
+	   						<i class="fa fa-twitter"></i>
+						</md-button>
+						<md-button md-no-ink flex class="md-accent md-raised md-hue-2 fbsubtle" 
+							ng-click="fireshare('sharestatement', homeitem, 'fb')"
+							layout="row" layout-align="center center" style="">
+	   						<i class="fa fa-facebook"></i>
+						</md-button>
+					</div>
+				</div>
+				<div style="display: table; height:100%; width:100%">
+					<div style="display: table-cell; vertical-align: middle;">
+						<div class="md-padding" ng-bind-html="homeitem.text" ng-click="go(tslink(homeitem))"
+							style="text-decoration: none; font-weight:bold; font-size: 0.9em; color: #000; margin: 0 auto; text-align: center"></div>
+						<div style="width:100%; text-align: right; margin-top:6px">
+							<span ng-if="hasauthor(homeitem)" class="md-padding statement_author"
+								style="text-decoration: none; color: #000000; text-transform: capitalize; font-weight: bold; ">
+								<span ng-if="statementhasyoutube(homeitem)">
+									<a ng-href="{{homeitem.link}}" ng-bind="homeitem.author.name" target="_blank"></a>
+								</span>
+								<span ng-if="!statementhasyoutube(homeitem)">
+									<a ng-if="haslink(homeitem)" ng-href="{{homeitem.link}}" ng-bind="homeitem.author.name"></a>
+									<span ng-if="!haslink(homeitem)" ng-bind="homeitem.author.name">
+									</span>
+								</span>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div layout style="position:absolute; bottom:0px; width:100%; vertical-align:middle;background-color:#ddd;  font-size: 0.8rem;"
+						class="md-padding">
+            			<span style="font-weight:bold" ng-bind="idtotopics[homeitem.topic].name"></span>
+        		</div>
+			</div>
+		</div>
+</md-card>       
+
+
+  

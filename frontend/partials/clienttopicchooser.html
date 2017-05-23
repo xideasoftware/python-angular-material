@@ -1,0 +1,12 @@
+
+<h2>Topic Progress</h2>
+
+<div class="atopicbox" ng-repeat="atopic in clienttopics" ng-click="gotopic(atopic)">
+	<div class="atopicboxinner" style="margin-bottom:6px; position:relative">
+		<progressbar ng-class="{'progress-striped':reactionnotcomplete(atopic),'active':reactionnotcomplete(atopic)}" max="reactionmax(atopic)" value="reactionprogress(atopic)" type="danger">
+		</progressbar>
+		<div class="otherprogresslabel">
+			<span>{{atopic.name}}</span>
+		</div>
+	</div>
+</div>

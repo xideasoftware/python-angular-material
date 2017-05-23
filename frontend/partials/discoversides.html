@@ -1,0 +1,36 @@
+<div>
+  <md-toolbar class="header" pd-explainer="axisexplainersheet.html" pd-explainer-location="top-right">
+    <h2>
+      Explore different sides
+    </h2>
+  </md-toolbar>
+</div>
+<div layout="row" layout-sm="column" layout-md="column" layout-lg="column" style="margin-top:5px">
+<div class="md-padding" style="width:100%">
+  <div ng-repeat="t in filteredtopics() | limitTo:itemcount" class="positionaxis" >
+    <div pd-include="" src="'positionaxis.html'" pd-init="topic=t;listenevent=false" onload="loaded()" pd-controller="positionAxisCtrl">
+    </div>
+  </div>
+  <div layout layout-align="center center">
+    <md-button md-no-ink flex flex-md="66" flex-gt-md="33" style="margin:4px 4px 10px 4px" class="md-raised md-padding md-primary" ng-click="addmore()" 
+      ng-show="itemcount < filteredtopics().length">Load More
+    </md-button>
+    <div ng-if="yourtopics.length == 0 && topic.id > -1">
+      No articles viewed - please go to 
+      <a class="highlight" ng-href="{{topic.safelink}}">{{topic.name}}
+      </a> to read around.
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="md-padding">
+  <md-toolbar class="header">
+    <h2>
+      Do other stuff
+    </h2>
+  </md-toolbar>
+</div>
+<div id="domore" pd-include="" src="'domore.html'" onload="loaded()" class="md-padding"></div>
+
+

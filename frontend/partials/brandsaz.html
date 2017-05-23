@@ -1,0 +1,36 @@
+<div>
+  <div>
+    <div class="md-padding">
+      <md-toolbar class="header md-padding">
+        <h2 class="heading">FIND A BRAND OR PRODUCT</h2>
+      </md-toolbar>
+    </div>
+    <div class="md-padding">
+      <md-input-container> <label>Search for a Brand or product</label> 
+        <input class="form-control" ng-model="query" placeholder="Enter search text here"/>
+      </md-input-container>
+    </div>
+    <div class="md-padding" style="padding-top:8px">
+      <div ng-repeat="org in orgs | orderBy:'name' | filter:query">
+        <a ng-href="/brandprofile/-1/-/{{org.org_id}}/{{makesafelink(org.name)}}">{{org.name}}
+        </a>
+        </br>
+      </div>  
+    </div>
+    <div class = "dialpadding">
+      </br> 
+      <p class="highlight"><a href="/brandmatching/-1/-/-1/-?tab=3">View your top brand matches here</a></p>
+      </br>
+      <p class="highlight"><a href="/comparebrands">Compare brands</a></p>
+      </br>
+      </br>
+      <p class="md-padding">Brand matches is in early development. To suggest a brand, product, service or data to include please tweet us <a href="https://twitter.com/PositionDial" target="_blank">@PositionDial</a>.</p>
+    </div>
+  </div>
+  <div id="otherstuff" pd-include="" ng-if="!showsidebar()" src="'otherstuff.html'" onload="loaded()" class="md-padding"></div>  
+</div>
+
+  
+  
+  
+  

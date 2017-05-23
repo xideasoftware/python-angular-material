@@ -1,0 +1,45 @@
+<div class="dialexplorerblock">
+  <md-card>
+	<md-toolbar ng-if="caption" class="md-padding toolbarcaption" style="min-height:30px">
+		<a ng-if="hascaption()" ng-click="gocaption()">
+			{{caption}} PositionDial on {{topic.name}}
+		</a>
+		<span ng-if="!hascaption()">
+			{{caption}} PositionDial on {{topic.name}}
+		</span>
+	</md-toolbar>
+	<div layout="column" layout-sm="row">
+    	<div hide-gt-sm ng-if="issidebysidewhensmall()" flex="30">
+      		<div ng-switch on="textualpositions.length > 0" hide-gt-sm layout="center center" 
+      				style="margin:3px; font-size:0.8em; min-height:100px; font-weight:bold">
+      			<div ng-switch-when="true" class="md-padding" style="margin:auto">
+      				<span ng-show="dialtype == 'visitor'">So far, you are:</span>
+      				<span ng-repeat="position in textualpositions | limitTo: 4">
+        			<span ng-show="$last && textualpositions.length > 1"> and</span>
+        			<span ng-bind="textualpositiondescription(position)"></span><span ng-show="textualpositions.length > 2 && $first || ($middle && !$last)">,</span></span>
+      			</div>
+      			<div ng-switch-when="false" class="md-padding" style="margin:auto; padding-bottom:30px">
+      				Calculating position...  
+      			</div> 
+      		</div>
+      	</div>
+    	<div flex-sm ng-hide="!data.showdial">  
+    		<div class="videoWrapper" pd-explainer="{{dialexplainer}}" pd-explainer-location="top-right">
+      		<div ng-show="emptytext" style="padding-top:20%; text-align:center; font-size:1.0em; font-weight:bold" ng-if="data.showinstructions" ng-click="fireshare(emptytextbroadcast)">
+      			<a ng-click="fireshare(emptytextbroadcast)">
+      				<span>{{emptytext}}</span>
+      			</a>
+      		</div>
+      		<pd-dial-svg ng-show="data.showdial"></pd-dial-svg>
+      		</div>
+    	</div>
+    </div>
+    <md-card-content hide-sm class="md-padding" style="font-weight:bold; text-align:center">
+      <span ng-if="textualpositions.length > 0" ng-repeat="position in textualpositions | limitTo: 4">
+        <span ng-show="$last && textualpositions.length > 1"> and</span>
+        <span ng-bind="textualpositiondescription(position)"></span><span ng-show="textualpositions.length > 2 && $first || ($middle && !$last)">,</span>
+      </span>
+    </md-card-content>
+    </div>
+  </md-card>
+</div>

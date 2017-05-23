@@ -1,0 +1,15 @@
+<md-toast md-theme="pd">
+    <table style="width:100%">
+        <tr>
+            <td style="text-align:center">
+                This site uses cookies. You are agreeing to our use of cookies on this site.
+            </td>
+            <td>
+                <div layout="row" layout-sm="column" layout-md="column" layout-align="center center"> 
+                    <md-button md-theme="pd" ng-click="closeToast()" class="md-raised" style="margin:2px; white-space:nowrap" >I am OK with this</md-button>
+                    <md-button md-theme="pd" ng-click="closeToast();go('/privacyandterms');" class="md-raised" style="margin:2px; white-space:nowrap" >Find out more</md-button> 
+                </div>
+            </td>
+        </tr>
+    </table>
+</md-toast>

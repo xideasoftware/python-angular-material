@@ -1,0 +1,33 @@
+<div>
+  <md-toolbar class="subheader">
+  <h3>Share your Position
+  </h3>
+  </md-toolbar>
+  <div fill-layout>
+    <md-input-container fill-layout>
+      <textarea style="width:100%" ng-model="inputdata.statement" rows="2" ng-click="expand()" placeholder="Enter a Position statement, e.g. We should scrap the minimum wage">
+      </textarea>
+    </md-input-container>
+    <md-input-container fill-layout ng-if="expanded">
+      <input ng-model="inputdata.author" placeholder="OPTIONAL: Who said it? Enter name (could be you!)">
+    </md-input-container>
+    <md-input-container ng-if="expanded">
+      <input ng-model="inputdata.link" placeholder="OPTIONAL: Add a link if possible to help everyone see where the Position comes from">
+    </md-input-container>
+    <md-input-container fill-layout ng-if="expanded">
+      <input style="width:100%" type="text" class="form-control" ng-model="inputdata.topic" placeholder="OPTIONAL: Enter topic">
+    </md-input-container>
+    <md-input-container fill-layout ng-if="expanded">
+      <textarea style="width:100%" class="form-control" ng-model="inputdata.note" placeholder="OPTIONAL: Please add notes to help us with positioning - e.g. is it left or right">
+      </textarea>
+    </md-input-container>
+    <div style="padding: 0 6px 0 6px">
+      <div class="clearfix">
+        <div layout="row" layout-align="end center">
+          <md-button md-no-ink class="md-raised md-primary" ng-click="suggest()" md-theme="pd">Add Position
+          </md-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

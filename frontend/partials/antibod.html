@@ -1,0 +1,42 @@
+<div layout="row" layout-sm="column" layout-md="column">
+  <div flex-gt-md="99" class="md-padding">
+    <md-toolbar class="header">
+      <h2>
+        Your Antibod<span ng-if="topic.id > -1"> on </span><a ng-if="topic.id > -1" ng-click="gotopic(topic)" class="heading">{{topic.name}}</a>
+      </h2>
+    </md-toolbar>
+    
+    <div class="textcontainer">
+    <div class = "highlight">
+      <p>News and views opposite to your Position. <a href="/selectpositiondial">Get your PositionDial</a> for tailored results. Antibod is in beta, to suggest a commentator please tweet us @positiondial.
+      </p>
+    </div>
+    </div>
+    
+    <div class="md-padding">
+      <div class="topiclatestitemcontainer" style="margin-right:auto" ng-repeat="a in latestarticles | filter:{ready: true} | limitTo:itemcount">
+      <md-card>
+      <md-card-content>
+        <table style="margin-bottom:3px">
+          <tr>
+          <td>
+            <div pd-article-img article="a" topic="topic" width="100" height="100" style="width:50px; height:50px"></div>
+          </td>
+          <td>
+            <a style="text-decoration: none;" ng-href="{{a.urllink}}">{{a.headline}}
+            </a>
+          </td>
+          </tr>
+        </table>
+      </md-card-content>
+      </md-card>
+      </div>
+      <div layout layout-align="center center">
+        <md-button md-no-ink flex flex-md="66" flex-gt-md="33" style="margin:4px 4px 10px 4px" class="md-raised md-padding md-primary"
+         ng-click="addmore(12)" ng-show="itemcount < articlestats.length && !loading">Load More
+        </md-button>
+      </div>
+
+    </div>
+  </div>
+</div>

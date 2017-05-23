@@ -1,0 +1,113 @@
+<div class="md-padding">
+	<md-toolbar class="header">
+	<h2>
+		<span ng-bind="author.name"> </span>: <span ng-bind="matches[0]['matchpc']"> </span> 
+			Overall match
+	</h2>
+	</md-toolbar>
+</div>
+<div layout="row" layout-sm="column" layout-md="column">
+	<div flex-gt-md="66" class="md-padding">
+      
+      <div ng-show="matches[0].match == 0">
+				<md-button flex md-no-ink class="bottom-share-item md-warn md-raised" ng-click="go('/election2015')" 
+					layout="row" layout-align="start center" ng-show="matchlocation(['authorppc'])" style="width:100%">
+  					Get your Election2015 PositionDial to generate your % match
+				</md-button>
+  			</div>
+		<div>
+          
+			<md-card flex style="min-height:100px; background-color:white !important; min-width:300px; margin:auto 0px; "> 
+    		<div layout="row">
+       		<img hide-gt-md hide-md ng-src="{{author.authorpic}}" style="width:100px; height:100px"></img>
+       		<div hide-gt-md hide-md flex layout-fill style="height:100px">
+				<div style="display: table-cell; vertical-align: middle; height:100px" class="md-padding highlight textcaption"> 
+						<div class="md-padding">Candidate for {{author.constituency}}</div>
+						<div class="md-padding">{{author.party}}</div>
+						<div class="md-padding"><a ng-if="author.weburl" ng-href="{{author.weburl}}" target="_blank" style="padding-top:8px">
+									Visit {{author.name}}'s website <i class="fa fa-external-link"></i></a></div>
+						<div class="md-padding"><a ng-if="author.twitterurl" ng-href="https://twitter.com/{{author.twitterurl}}" target="_blank" style="padding-top:8px">
+                          Follow on Twitter <i class="fa fa-twitter"></a></i></div>
+       			</div> 
+              </div>
+       		<img hide-sm ng-src="{{author.authorpic}}" style="width:150px; height:150px"></img>
+       		<div hide-sm flex layout-fill style="height:150px">
+				<div style="display: table-cell; vertical-align: middle; height:150px" class="md-padding highlight textcaption"> 
+						<div class="md-padding">Candidate for {{author.constituency}}</div>
+						<div class="md-padding">{{author.party}}</div>
+						<div class="md-padding"><a ng-if="author.weburl" ng-href="{{author.weburl}}" target="_blank" style="padding-top:8px">
+									Visit {{author.name}}'s website <i class="fa fa-external-link"></i></a></div>
+						<div class="md-padding"><a ng-if="author.twitterurl" ng-href="https://twitter.com/{{author.twitterurl}}" target="_blank" style="padding-top:8px">
+                          Follow on Twitter <i class="fa fa-twitter"></a></i></div>
+       			</div> 
+       		</div> 
+			</div>  
+			<md-card-content style="position:relative; width:100%; padding:0px">
+    			<div style="border-top:1px solid #ccc;background-color:#eee" class="md-padding textcaption">
+					<div>
+					You match <span ng-bind="author.name"> </span> <span ng-bind="matches[0]['matchpc']"> </span>
+					<span ng-if="reactionstats" ng-show="reactionstats.pctcomplete < 1.0">
+					 (candidate has completed <span ng-bind="pctcomplete()"></span> of their election quiz)</span>
+					</div>
+					<div style="text-align:right">
+						<i><a href="http://blog.positiondial.com/2015/04/22/the-bigppcquiz-enables-voters-to-match-to-candidates-directly-online-for-the-first-time/" target="_blank">Source data directly from candidate completing the #bigppcquiz</a></i>
+					</div>
+				</div>
+			</md-card-content>
+	    	</md-card>       
+			
+		</div>
+		<md-button flex md-no-ink class="bottom-share-item md-primary md-raised" ng-click="go('/election2015/-1/-/-1/-?tab=3')" 
+			layout="row" layout-align="start center" ng-show="matchlocation(['authorppc'])" style="width:100%">
+				See all your election matches
+		</md-button>
+	</div>
+	<div flex-gt-md="33" class="md-padding">
+  		<pd-dial class="mdallerdial center-block" hidelevels="true" hidebreadcrumbs="false" dialtype="authorppc" dialid="authorId"
+       		clientid="clientid" topic="topic" emptytext="'Ask '+author.name+' to take the #bigppcquiz'" emptytextbroadcast="sendppcencourage"
+       		style="width:100%" smallsidebyside="false" toplevelonly="true">
+  		</pd-dial>
+
+	</div>
+</div>
+<div ng-if="author.authorppcstatement" class="md-padding">
+	<h3>Personal Statement</h3>
+	<div ng-bind-html="::getauthorstatement()"></div>
+</div>
+<div ng-if="!showsidebar()" class="md-padding" layout="column" layout-gt-sm="row" layout-align="center space-around" fill-layout>
+	<div ng-hide="matches[0].match == 0" flex class="md-padding" layout="column" layout-align="center space-around" fill-layout>
+	<md-button md-no-ink class="bottom-share-item md-accent md-raised md-hue-3" ng-click="fireshare('sendppcmatch', 'tw')" layout="row" layout-align="start center"
+			ng-show="matchlocation(['authorppc'])">
+   		<i class="fa fa-twitter"></i><span flex layout-fill>Tweet Candidate Match</span>
+	</md-button>
+	<md-button md-no-ink class="bottom-share-item md-accent md-raised md-hue-2" ng-click="fireshare('sendppcmatch', 'fb')" layout="row" layout-align="start center"
+			ng-show="matchlocation(['authorppc'])">
+   		<i class="fa fa-facebook"></i><span flex layout-fill>Share Candidate Match</span>
+	</md-button>	
+	</div>
+	<div flex class="md-padding" layout="column" layout-align="center space-around" fill-layout>	
+	<md-button md-no-ink class="bottom-share-item md-accent md-raised md-hue-3" ng-click="fireshare('sendppcprofile', 'tw')" layout="row" layout-align="start center"
+			ng-show="matchlocation(['authorppc'])">
+   		<i class="fa fa-twitter"></i><span flex layout-fill>Tweet Candidate Profile</span>
+	</md-button>
+	<md-button md-no-ink class="bottom-share-item md-accent md-raised md-hue-2" ng-click="fireshare('sendppcprofile', 'fb')" layout="row" layout-align="start center"
+			ng-show="matchlocation(['authorppc'])">
+   		<i class="fa fa-facebook"></i><span flex layout-fill>Share Candidate Profile</span>
+	</md-button>	
+	</div>
+</div>
+<div class="md-padding" ng-if="!showsidebar()">
+    </br>
+	<md-toolbar class="header">
+	<h2>
+		CANDIDATES
+	</h2>
+	</md-toolbar>
+    
+    <p>
+    
+    If you'd like voters to see where you stand & match to you here please contact mariam @ positiondial.com about <a href="http://blog.positiondial.com/2015/04/22/the-bigppcquiz-enables-voters-to-match-to-candidates-directly-online-for-the-first-time/">the #bigppcquiz</a> or tweet <a href="https://twitter.com/PositionDial">@PositionDial</a>
+    </p>
+</div>
+</div>
+	

@@ -1,0 +1,54 @@
+<div>
+  <div ng-if="hashomefeatures()" class="col-md-8" id="twosidesaxis" pd-include="" src="'twosidesaxis.html'" onload="loaded(topic.id)" pd-controller="twoSidesAxisCtrl">
+  </div>
+  <div ng-if="hashomefeatures()" flex="33">
+    <div id="latestarticles" pd-include="" src="'latestarticles.html'" onload="loaded( false, topic.id )" pd-controller="latestArticleCtrl">
+    </div>
+  </div>
+</div>
+<h2>
+  <a class="heading" ng-href="{{topic.safelink}}">
+    <img src="http://cdn.positiondial.com/img/logocentreBLACK.png" style="height: 22px; margin-right: 5px">Where do you stand on {{topic.name}}?
+  </a>
+</h2>
+<div class="md-padding">
+  <div flex="50">
+    <div id="voting" pd-include="" src="'voting.html'" onload="loaded()" pd-controller="votingCtrl">
+    </div>
+  </div>
+  <div flex="50">
+    <div id="dial" pd-include="" src="'dialview.html'" onload="loaded(true)" pd-controller="dialCtrl" class="videoWrapper">
+    </div>
+    <div id="matches" pd-include="" src="'matchpanel.html'" onload="loaded(-1)" pd-controller="matchPanelCtrl" pd-init="hidetitle=true;amount=4">
+    </div>
+  </div>
+  <div class="clearfix">
+  </div>
+</div>
+<div class="clearfix">
+</div>
+<div class="col-md-8">
+  <div id="addstatement" pd-include="" src="'addstatement.html'" onload="loaded(true)" pd-controller="addstatementCtrl">
+  </div>
+</div>
+<div flex="33">
+  <div id="saveyours" pd-include="" src="'saveyoursiconstext.html'" onload="loaded()" pd-controller="saveYoursCtrl">
+  </div>
+</div>
+<div class="clearfix">
+</div>
+<div class="col-md-12" id="positionaxis" pd-include="" src="'positionaxis.html'" onload="loaded(topic.id)" pd-controller="positionAxisCtrl">
+</div>
+<div ng-if="hashomefeatures()" class="col-md-12" id="topicexplorer" pd-include="" src="'topicexplorer.html'" onload="loaded( false, topic.id )" pd-controller="topicExplorerCtrl">
+</div>
+<div ng-if="!hashomefeatures()">
+  <div class="col-md-8" id="topicexplorer" pd-include="" src="'topicexplorer.html'" onload="loaded( false, topic.id )" pd-controller="topicExplorerCtrl">
+  </div>
+  <div flex="33">
+  	<div id="latestarticles" pd-include="" src="'latestarticles.html'" onload="loaded( false, topic.id )" pd-controller="latestArticleCtrl">
+  	</div>
+    <a href="/account" id="signintosave">
+      <img class="img-responsive" src="http://cdn.positiondial.com/img/signuptosave1.png">
+    </a>
+  </div>
+</div>

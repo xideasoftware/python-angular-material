@@ -1,0 +1,138 @@
+<div class="md-padding">
+	<md-toolbar class="header">
+	<h2>
+		<span ng-bind="author.name"> </span>: <span ng-bind="matches[0]['matchpc']"> </span> Overall match <a ng-click="back()">(Go Back)</a>
+	</h2>
+	</md-toolbar>
+</div>
+<div layout="row" layout-sm="column">
+	<div flex-gt-sm="66" class="md-padding">
+    		<div>
+          
+			<md-card flex style="min-height:100px; background-color:white !important; min-width:300px; margin:auto 0px; "> 
+    		<div layout="row">
+			<div flex="33" class="md-padding">
+				<pd-img ng-if="author" class="img-thumbnail" style="width:100%" aspect-ratio="1.0"
+						ng-src="{{imgconfig['authorstatement'].base+author.authorpic}}" 
+						pd-img-default="{{imgconfig['authorstatement'].default}}"/>
+			</div>
+       		<div flex layout-fill style="height:100px">
+				<div style="display: table-cell; vertical-align: middle; height:100px" class="md-padding highlight textcaption"> 
+						<div class="md-padding"><a ng-if="author.weburl" ng-href="{{author.weburl}}" target="_blank" style="padding-top:8px">
+									Visit {{author.name}}'s website <i class="fa fa-external-link"></i></a></div>
+						<div class="md-padding"><a ng-if="author.twitterurl" ng-href="https://twitter.com/{{author.twitterurl}}" target="_blank" style="padding-top:8px">
+                          Follow on Twitter <i class="fa fa-twitter"></i></a></div>
+       			</div> 
+              </div>
+			</div>  
+			</md-card-content>-->
+	    	</md-card>       
+			
+		</div>
+	</div>
+	<div flex-gt-sm="33" class="md-padding">
+  		<pd-dial class="mdallerdial center-block" hidelevels="true" hidebreadcrumbs="false" dialtype="authorstatement" dialid="matchid"
+       		clientid="clientid" topic="topic" emptytext="'No information on '+author.name" emptytextbroadcast="sendcommentatorencourage"
+       		style="width:100%" smallsidebyside="false" toplevelonly="true">
+  		</pd-dial>
+
+	</div>
+</div>
+
+<div ng-if="resultsready">
+	<md-content ng-if="jointstatementtopics.length == 0">
+		<div class="md-padding" style="font-size:1.0em; font-weight:bold">
+			{{matchcardselected.name}}: positions coming soon
+		</div>
+	</md-content> 
+	<md-card ng-if="jointstatementtopics.length > 0">
+		<md-toolbar class="md-padding" style="font-weight: bold; min-height:30px; font-size:0.9em; cursor:pointer"
+			ng-click="activatealljoints()">
+			  	You vs {{author.name}} overall match: {{generatejointpercentage.matchpc}} (Tap bars to reveal comments)
+			  <span ng-bind="generatejointpercentage"></span> 
+			
+		</md-toolbar>
+    </md-card>
+	<md-card ng-repeat="jointstatementtopic in jointstatementtopics">
+		<md-toolbar class="md-padding" style="font-weight: bold; min-height:30px; font-size:0.9em; cursor:pointer"
+			ng-click="activatejoint(jointstatementtopic)">
+			<div>
+				<span ng-bind="jointstatementtopic.topic.name"></span> match: <span ng-bind="topicmatch(jointstatementtopic.topic)"></span>
+			</div>
+      </md-toolbar>
+		<div layout="row" ng-show="isActivatedJoint(jointstatementtopic)" class="menu-toggle-list">
+		<md-content flex style="font-size:0.9em;font-weight:bold; overflow:hidden"
+			ng-class-odd="{'conversationrightgutter':cols > 1}" ng-class-even="{'conversationleftgutter':cols > 1}">
+			<div ng-repeat="jointstatement in jointstatementtopic.jointstatements" style=""> 
+				<div class="md-padding"
+					style="white-space:normal; text-transform:none; overflow:hidden; padding-bottom:6px; padding-top:6px">
+					<div style="max-width:700px;" class="">
+						<div class="leftconversation md-padding" style="margin-left:4px">{{jointstatement.citation.citation}}
+						</div>
+						<div layout="row" layout-align="start center">
+							<div style="padding-top:4px; padding-left:0px">
+								<pd-img ng-src="{{::pic(author)}}" style="width:24px" 
+    								needed-ratio="1.0" natural-width="200" natural-height="200"></pd-img>  
+    						</div>
+							<div>
+								<i>{{author.name}}</i>
+								<span ng-if="jointstatement.citation.origin != null"> -<a href="{{jointstatement.citation.url}}" target="_blank">{{jointstatement.citation.origin}}</a></span>
+								<span ng-if="jointstatement.citation.madedate != null">{{makedate(jointstatement.citation.madedate) | date:"d MMM yy"}}</span>
+							</div>
+						</div>
+					</div>
+
+					<div layout="row" layout-align="end center">
+						<div style="max-width:700px;" class="">
+							<div ng-if="::jointstatement.ihave" class="conversation md-padding" style="margin-right:4px">
+					 <a href="/getyourpositiondial/-1/-/1/all-topics/{{jointstatement.statement.id}}/-">
+					 <span ng-if="hasmyreaction(jointstatement.statement.id)" style="font-weight:bold"
+									ng-bind="myreaction(jointstatement.statement.id)"></span>
+				              <span style="font-weight:bold" 
+								  	ng-bind="jointstatement.statement.text"></span> </a>
+							</div>
+							<div ng-if="::!jointstatement.ihave">We're missing your opinion - please respond:</div>
+							<div ng-if="::!jointstatement.ihave" class="conversation md-padding" style="margin-right:4px">
+								 <a href="/getyourpositiondial/-1/-/1/all-topics/{{jointstatement.statement.id}}/-">
+								<div style="font-weight:bold"
+								  	ng-bind="jointstatement.statement.text"></div> </a>
+						 	<div layout="row" fill-layout md-theme="pd" layout-margin>
+								<md-button md-no-ink flex class="md-raised reactionbutton md-primary" ng-click="reactrefresh(jointstatement.statement,2)" 
+									ng-class="{'md-warn':havevoted(jointstatement.statement,2), }" ng-disabled="buttonsdisabled">Strongly<br />Agree</md-button>
+								<md-button md-no-ink flex class="md-raised reactionbutton md-primary" ng-click="reactrefresh(jointstatement.statement,1);" 
+									ng-class="{'md-warn':havevoted(jointstatement.statement,1), }" ng-disabled="buttonsdisabled">Agree</md-button>
+								<md-button md-no-ink flex class="md-raised reactionbutton md-primary" ng-click="reactrefresh(jointstatement.statement,0);" 
+									ng-class="{'md-warn':havevoted(jointstatement.statement,0), }" ng-disabled="buttonsdisabled">Neither<br />Really</md-button>
+								<md-button md-no-ink flex class="md-raised reactionbutton md-primary" ng-click="reactrefresh(jointstatement.statement,-1);" 
+									ng-class="{'md-warn':havevoted(jointstatement.statement,-1), }" ng-disabled="buttonsdisabled">Disagree </md-button>
+								<md-button md-no-ink flex class="md-raised reactionbutton md-primary" ng-click="reactrefresh(jointstatement.statement,-2);"
+									ng-class="{'md-warn':havevoted(jointstatement.statement,-2), }" ng-disabled="buttonsdisabled">Strongly<br />Disagree</md-button>
+								</div>  
+							</div>
+						</div>
+					</div>
+					<div flex layout="row" layout-align="end center">
+						<div>
+				     		<a href="/yourpositiondial"><i>You</i></a>
+						</div>
+						<div style="padding-top:4px; padding-left:4px">
+							<pd-img ng-src="user.svg" style="width:24px" 
+    							needed-ratio="1.0" natural-width="600" natural-height="600"></pd-img>  
+    					</div>
+					</div>
+				</div>
+
+			</div>
+        </md-content>
+        </div>
+   	</md-card>
+</div>
+
+<div class="md-padding">
+
+<em><a href="/faq">Commentator matches is in early development</a>. If you are {{author.name}} please get in touch <a href="mailto:info@positiondial.com?Subject=Claim%20PositionDial" target="_top">by email</a> or <a href="https://twitter.com/positiondial" target="_blank">on Twitter</a> about building up your PositionDial. Note you must have a verified Twitter account to do this.
+</em>
+
+</div>
+<div class="md-padding" layout="column" layout-gt-sm="row" layout-align="center space-around" fill-layout layout-wrap style="padding-bottom:50px">
+</div>

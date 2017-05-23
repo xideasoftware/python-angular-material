@@ -1,0 +1,32 @@
+
+<md-card class="md-padding" style="max-width:550px; margin:auto; margin-top:10px">
+	<md-toolbar class="header" style="; background-color:transparent">
+		<h2>Account Details</h2>
+	</md-toolbar>
+	<md-card-content>
+	<md-input-container style="min-width:280px"> <label>Username</label> <input type="text" name="username" id="username" value="" placeholder="Enter Username" ng-model="user.username"
+		disabled="true"> </md-input-container>
+	<md-input-container style="min-width:280px"> <label>E-mail</label> <input type="text" name="email_address" id="email_address" value="" placeholder="Enter Email Address"
+		ng-model="user.email_address"> </md-input-container>
+	<md-input-container style="min-width:280px" ng-show="originalemail != user.email_address"> <label>E-mail (again)</label> <input type="text" name="email_address" id="email_address"
+		value="" placeholder="Re-enter Email Address" ng-model="user.reemail_address"> </md-input-container>
+	<md-input-container style="min-width:280px"> <label>Full Name</label> <input type="text" name="name" id="name" value="" placeholder="Enter Full Name" ng-model="user.name"> </md-input-container>
+	<md-input-container style="min-width:280px"> <label>Location</label> <input type="text" name="area" id="area" value="" placeholder="Enter Postcode or Zip code" ng-model="user.area">
+	</md-input-container>
+	<div style="padding-bottom: 15px; padding-top: 10px;" layout="row" layout-align="center center">
+		<md-button md-no-ink md-no-ink class="md-raised md-primary" ng-click="saveuserdetails()" style=" max-width:280px">Update Details</md-button>
+	</div>
+	<div style="padding-bottom: 15px; padding-top: 10px;" layout="row" layout-align="center center">
+		<md-button md-no-ink md-no-ink class="md-raised" ng-click="gooffsite(logouturl)" style=" max-width:280px">Log Out</md-button>
+	</div>
+	</md-card-content>
+</md-card>
+<md-card ng-if="!pdloggedin" class="md-padding" style="max-width:550px; margin:auto; margin-top:10px">
+	<md-card-content style="font-size:0.9em; font-weight:bold" layout="column" layout-margin>
+	    <div flex>You are logged in via a social media account, with no personal details stored on positiondial.com</div>
+	    <div flex>Please logout and signup for positiondial.com if you wish to use a positiondial account instead!</div>
+	<div style="padding-bottom: 15px; padding-top: 10px;" layout="row" layout-align="center center">
+		<md-button md-no-ink md-no-ink class="md-raised" ng-click="gooffsite(logouturl)" style=" max-width:280px">Log Out</md-button>
+	</div>
+	</md-card-content>
+</md-card>

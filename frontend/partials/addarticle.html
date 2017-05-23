@@ -1,0 +1,34 @@
+
+<md-bottom-sheet md-theme="pd" class="md-padding">
+<md-content style="background-color:#fff;  min-height: 280px; min-width:280px; padding-bottom:20px" class="outside-border">
+  <div>
+  <h2 class="heading">Add media, article, video or rss
+    </h2>
+  </div>
+  <div class="md-padding">
+	<md-input-container style="width:95%"><label>Link / RSS
+      </label>
+      <input type="text" class="form-control" ng-model="inputdata.link">
+    </md-input-container>
+    <md-input-container>
+      <label>Author (if known)
+      </label>
+      <input type="text" class="form-control" ng-model="inputdata.author">
+    </md-input-container>
+    <md-input-container>
+      <label>Topic
+      </label>
+      <input type="text" class="form-control" ng-model="topic.name" disabled="disabled" ng-show="topic.name">
+    </md-input-container>
+    <md-input-container>
+      <label>Axis
+      </label>
+      <input type="text" class="form-control" ng-model="axis.name" disabled="disabled" ng-show="axis.name">
+    </md-input-container>
+  </div>
+  <div>
+    <md-button md-no-ink type="button" class="md-raised md-primary" ng-click="suggest()" md-theme="pd">Add Article
+    </md-button>
+  </div>
+</md-content>
+</md-bottom-sheet>

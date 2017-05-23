@@ -1,0 +1,146 @@
+<div class="md-padding">
+  <md-toolbar class="header">
+  <h2>
+    BRAND COMPARISON
+  </h2>
+  </md-toolbar>
+</div>
+<div align="right" style="margin-right: 20px;">
+   <md-button class="md-raised md-primary" ng-click = "choosebrands()">CHOOSE BRANDS</md-button>
+</div>
+<div style="display: table-cell;" class="md-padding highlight">
+	<p>See below how your selected brands match to you. You need to
+		have answered relevant positions to match to each one. Click on
+		'see data' to see topics underneath.</p>
+</div>
+  <div  class="md-padding">
+    <div  layout-margin layout-wrap layout-align="center left" >
+      <div ng-repeat="org in orgs track by $index" style= "margin-top: 7px" > 
+        <div layout="row"> 
+          <div flex="90" class="md-padding" style="cursor:pointer;" ng-click="refreshresults($index, org.org_id)" >          
+            <md-card flex style=" background-color:white !important; margin:auto 0px; "> 
+              <div layout="row" >
+                <div flex="10" class="md-padding">
+                  <pd-img ng-if="org" class="img-thumbnail" aspect-ratio="1.0"
+                      ng-src="{{imgconfig['org'].base+org.pic}}" 
+                      pd-img-default="{{imgconfig['org'].default}}" style="display: block; width: 32px; height: 30px;"/>
+                  </pd-img>
+                </div>
+                <div flex="25" class="md-padding">
+                  <div style="display: table-cell;" class="md-padding highlight textcaption">
+                      <span>{{org.name}}</span>
+                  </div>
+                </div>
+                <div flex="55" class="md-padding">
+                    <div style="display: table-cell;" class="md-padding highlight textcaption">
+                      <b ng-bind="matches[$index]['matchpc']"></b>
+                      <b>Match</b>
+                    </div> 
+                </div>
+                <div flex="10" class="md-padding">
+                  <div style="display: table-cell;" class="md-padding highlight textcaption">
+                      <span ng-if="!activebrand[$index]">See data > </span>
+                      <span ng-if="activebrand[$index]">Collapse > </span>
+                  </div>
+                </div>
+              </div>
+            </md-card>
+          </div>
+          <div flex="20" class="md-padding">
+            <a href="https://www.amazon.co.uk/gp/search?ie=UTF8&camp=1634&creative=6738&index=aps&keywords=+{{org.name}}+&linkCode=ur2&tag=positi01-21" 
+            rel="nofollow" style="padding-top:8px" ng-click="buybrandamazon()" target="_blank">
+              <md-button class="md-raised">Buy Now*</md-button>
+            </a>
+          </div>
+        </div>
+          <div ng-if="resultsready" ng-show="activebrand[$index]" class="menu-toggle-list" >
+              <md-content ng-if="all_jointstatementtopics[$index].length == 0">
+                <div class="md-padding" style="font-size:1.0em; font-weight:bold">
+                  Data coming soon
+                </div>
+              </md-content> 
+              <md-card ng-if="all_jointstatementtopics[$index].length > 0">
+                <md-toolbar class="md-padding" style="font-weight: bold; min-height:30px; font-size:0.9em; cursor:pointer"
+                  ng-click="activatealljoints()">
+                    {{org.name}} overall match: {{matches[$index]['matchpc']}} (Tap bars to reveal data)
+                </md-toolbar>
+              </md-card>
+              <md-card ng-repeat="jointstatementtopic in all_jointstatementtopics[$index]">
+                <md-toolbar class="md-padding" style="font-weight: bold; min-height:30px; font-size:0.9em; cursor:pointer"
+                  ng-click="activatejoint(jointstatementtopic)">
+                  <div>
+                    <span ng-bind="jointstatementtopic.topic.name"></span> match: <span ng-bind="topicmatch(jointstatementtopic.topic)"></span>
+                  </div>
+                </md-toolbar>
+                <div layout="row" ng-show="isActivatedJoint(jointstatementtopic)" class="menu-toggle-list">
+                  <md-content flex style="font-size:0.9em;font-weight:bold; overflow:hidden"
+                    ng-class-odd="{'conversationrightgutter':cols > 1}" ng-class-even="{'conversationleftgutter':cols > 1}">
+                    <div ng-repeat="jointstatement in jointstatementtopic.jointstatements" style=""> 
+                        <div class="md-padding" style="white-space:normal; text-transform:none; overflow:hidden; padding-bottom:6px; padding-top:6px">
+                            <div style="max-width:700px;" class="">
+                             <div ng-repeat="jcitation in jointstatement.citations" layout="row" layout-align="start center" style="padding-bottom:4px">
+                                <div class="leftconversation md-padding" style="margin-left:4px" layout="row">
+                                  <div style="padding-top:4px; padding-left:0px">
+                                    <pd-img ng-src="{{::pic(org)}}" style="width:24px" 
+                                        needed-ratio="1.0" natural-width="200" natural-height="200"></pd-img>  
+                                  </div>
+                                  <div style="padding-left:4px">
+                                    <i>{{org.name}}<span ng-if="jcitation.series != null"> - {{jcitation.rating}}</i> <a href="{{jcitation.link}}" target="_blank">Data source: {{jcitation.series}}</a></span>
+                                    <span ng-if="jcitation.origin != null">  {{jcitation.origin}}</span>
+                                    <span ng-if="jjcitation.madedate != null">{{makedate(jcitation.madedate) | date:"d MMM yy"}}</span></i>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div layout="row" layout-align="end center">
+                              <div style="max-width:700px;" class="">
+                                <div ng-if="::jointstatement.ihave" class="conversation md-padding" style="margin-right:4px">
+                                
+                                    <a href="/brandmatching/-1/-/{{jointstatement.statement.id}}/-?tab=1">
+                                       <span ng-if="hasmyreaction(jointstatement.statement.id)" style="font-weight:bold" ng-bind="myreaction(jointstatement.statement.id)">
+                                    </span>
+                                     <span style="font-weight:bold" ng-bind="jointstatement.statement.text"></span>
+                                    </a>
+                                </div>
+                                <div ng-if="::!jointstatement.ihave">We're missing your opinion - please respond:</div>
+                                <div ng-if="::!jointstatement.ihave" class="conversation md-padding" style="margin-right:4px">
+                                    <a href="/brandmatching/-1/-/{{jointstatement.statement.id}}/-?tab=1">
+                                      <div style="font-weight:bold" ng-bind="jointstatement.statement.text">
+                                      </div>
+                                    </a>
+                                  <div layout="row" fill-layout md-theme="pd" layout-margin>
+                                    <md-button md-no-ink flex class="md-raised reactionbutton md-primary" ng-click="reactrefresh(jointstatement.statement,2, org.org_id)" 
+                                      ng-class="{'md-warn':havevoted(jointstatement.statement,2), }" ng-disabled="buttonsdisabled">Strongly<br />Agree</md-button>
+                                    <md-button md-no-ink flex class="md-raised reactionbutton md-primary" ng-click="reactrefresh(jointstatement.statement,1);" 
+                                      ng-class="{'md-warn':havevoted(jointstatement.statement,1), }" ng-disabled="buttonsdisabled">Agree</md-button>
+                                    <md-button md-no-ink flex class="md-raised reactionbutton md-primary" ng-click="reactrefresh(jointstatement.statement,0);" 
+                                      ng-class="{'md-warn':havevoted(jointstatement.statement,0), }" ng-disabled="buttonsdisabled">Neither<br />Really</md-button>
+                                    <md-button md-no-ink flex class="md-raised reactionbutton md-primary" ng-click="reactrefresh(jointstatement.statement,-1);" 
+                                      ng-class="{'md-warn':havevoted(jointstatement.statement,-1), }" ng-disabled="buttonsdisabled">Disagree </md-button>
+                                    <md-button md-no-ink flex class="md-raised reactionbutton md-primary" ng-click="reactrefresh(jointstatement.statement,-2);"
+                                      ng-class="{'md-warn':havevoted(jointstatement.statement,-2), }" ng-disabled="buttonsdisabled">Strongly<br />Disagree</md-button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div flex layout="row" layout-align="end center">
+                              <div>
+                                <a href="/yourpositiondial"><i>You</i></a>
+                              </div>
+                              <div style="padding-top:4px; padding-left:4px">
+                                <pd-img ng-src="user.svg" style="width:24px" 
+                                    needed-ratio="1.0" natural-width="600" natural-height="600"></pd-img>  
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                  </md-content>
+                </div>
+              </md-card>
+          </div>
+      </div>
+    </div>
+</div>
+<div class="md-padding" layout="column" layout-gt-sm="row" layout-align="center space-around" fill-layout layout-wrap style="padding-bottom:50px">
+</div>

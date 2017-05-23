@@ -1,0 +1,100 @@
+<md-content class="md-padding">  
+	<p class="md-padding">The Random Everything PositionDial contains over 100 Positions over many topics. It's a marathon. You have been warned.</p>
+	  <div flex hide-gt-sm layout layout-fill ng-if="share != null" layout-align="space-around space-around">
+		<div flex style="text-transform: uppercase; vertical-align: middle; max-width:400px" layout layout-align="center center">
+		<p><span ng-bind-html="share.name"></span>'s match is:</p>
+		</div>
+		<md-card flex style="min-height:100%; background-color:transparent; max-width:400px" class="md-padding" layout="column">
+			<pd-img flex ng-src="{{share.imagedataurl}}" style="margin:auto" needed-ratio="0.6" natural-width="317" natural-height="167"></pd-img> 
+			<div><span ng-bind="share.data.name"></span></div>
+		</md-card>
+	</div>
+	   
+	<div layout="row" layout-fill layout-margin>
+	  <div flex hide-sm layout layout-fill ng-if="share != null">
+		<md-card flex style="min-height:100%; background-color:transparent" class="md-padding" layout="column">
+			<p style="text-transform: uppercase;"><span ng-bind-html="share.name"></span> has <span ng-bind="share.data.matchpc"></span> match to:</p>
+			<pd-img flex ng-src="{{share.imagedataurl}}" style="margin:auto" needed-ratio="0.6" natural-width="317" natural-height="167"></pd-img> 
+			<div><span ng-bind="share.data.name"></span></div>
+		</md-card>
+	  </div>
+	  
+	  <div flex layout layout-fill>
+	   <md-card flex style="min-height:100%"> 
+	   	 <md-button style="min-height:100%;min-width:100%" class="md-padding" ng-click="setselectedindex(1);startgame()" style="white-space:normal">
+	    	 <pd-img src="myPositionDial.png" style="width:80%;margin:auto" needed-ratio="0.6" natural-width="512" natural-height="512"></pd-img>  
+	     	 <p style="white-space:normal">Get started: agree or disagree</p>
+	   	 </md-button>
+	   </md-card>
+	  </div>
+	      
+	  <div flex layout layout-fill>
+	   <md-card flex style="min-height:100%"> 
+	   	 <md-button style="min-height:100%;min-width:100%" class="md-padding" ng-click="setselectedindex(2)" style="white-space:normal">
+		   
+	   	     <pd-img src="percent.png" style="width:80%;margin:auto" needed-ratio="0.6" natural-width="256" natural-height="256"></pd-img>  
+	     	 <p style="white-space:normal">Match to friends & everyone</p>
+	   	 </md-button>
+	   </md-card>
+	  </div>   -->
+	  <div ng-show="one">
+	  
+	   <!-- HEADER  -->
+	  <div class="md-padding">
+		<md-toolbar class="header md-padding">
+		<h2>Random everything</h2>
+		</md-toolbar>
+	  </div>
+
+	  <div style="width:100%; margin:8px auto" class="md-padding" layout="column" layout-gt-sm="row" layout-align="center center" layout-align-gt-sm="center space-around" hide-sm>
+		<div flex flex-gt-sm="75" id="yourlevel" pd-include="" src="'yourlevel.html'" pd-controller pd-init="single=true"></div>
+	    <md-button md-no-ink flex-gt-sm="25" class="md-raised md-primary" ng-click="showOne()"  style="margin:4px auto"> See your matches </md-button>
+	</div>
+	 
+	<div layout="row" layout-sm="column" layout-md="column">
+		<div flex-gt-md="55" flex-order="2">
+			<div id="voting" pd-include="" src="'voting.html'" onload="loaded()" pd-controller pd-init="" class="md-padding" style="max-width: 600px; margin: auto"></div>
+		</div>
+		<div flex-gt-md="45" flex-order="1" flex-order-gt-md="3">
+			<div id="dial" pd-include="" src="'dialview.html'" onload="loaded()" pd-controller="dialCtrl" pd-init="" class="md-padding" style="max-width: 600px; margin: auto" pd-explainer="dialexplainersheet.html"></div>
+		</div>
+	</div>
+	<md-button md-no-ink class="md-raised md-primary gamebutton" ng-click="go('/account')">Save your PositionDial</md-button> 
+	<div style="width:100%; margin:8px auto; padding-top: 15px" class="md-padding" layout="row" layout-sm="column" layout-align-gt-sm="center space-around" hide-gt-sm>
+		<div flex flex="75" id="yourlevel" pd-include="" src="'yourlevel.html'" pd-controller pd-init="single=true"></div>
+		<md-button md-no-ink flex flex="25" class="md-raised md-primary" ng-click="showOne()" style="margin:4px auto; width: 100%;"> Matches </md-button>
+	</div>
+	</div>
+	<div ng-show="two">
+	 <!-- HEADER  -->
+	<div class="md-padding">
+		<md-toolbar class="header md-padding">
+		<h2>Your matches</h2>
+		</md-toolbar>
+	</div>
+	<div style="width:100%; margin:8px auto" class="md-padding" layout="column" layout-gt-sm="row" layout-align-gt-sm="center space-around" hide-sm>
+		<div flex flex-gt-sm="75" id="yourlevel" pd-include="" src="'yourlevel.html'" pd-controller pd-init="single=true"></div>
+		<md-button md-no-ink flex-gt-sm="25" class="md-raised md-primary" ng-click="showTwo()"  style="margin:4px auto"> See your PositionDial </md-button>
+	</div> 
+
+	<div layout-gt-sm="column" layout-margin class="matchresults">
+	<md-card><md-card-content>
+		<p>Your match with your friends</p>
+	    <pd-matches matches="visitormatches" matchtype="friend" channel="sendtopiccomplete"></pd-matches>
+	    <div class="md-padding" layout="column" layout-gt-sm="row" layout-align="right space-around" fill-layout>
+	  	</div>
+	</md-card-content></md-card>
+	<md-card ng-if="visitoraggmatches.length > 0"> <md-card-content>
+		<p>Your match with everyone</p>
+	    <pd-matches matches="visitoraggmatches" matchtype="visitoragg"></pd-matches>
+	</md-card-content></md-card>
+	<div style="width:100%; margin:8px auto; padding-top: 15px" class="md-padding" ng-click="showme=false" layout="row" layout-align-gt-sm="center space-around"  hide-gt-sm>
+		<div flex flex-gt-sm="75" id="yourlevel" pd-include="" src="'yourlevel.html'" pd-controller pd-init="single=true"></div>
+		
+		<md-button md-no-ink flex flex-gt-sm="12" class="md-raised md-primary" ng-click="showTwo()" style="margin:auto auto"> PositionDial </md-button>
+	</div> 
+	<div id="otherstuff" pd-include="" src="'otherstuff.html'" onload="loaded()" class="md-padding"></div>
+	</div>
+	</div>
+	<div style="margin-bottom:200px"></div>
+</md-content>

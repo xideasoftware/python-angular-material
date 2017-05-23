@@ -1,0 +1,158 @@
+<md-content class="md-padding">  
+  <div class="md-padding" >
+    <md-toolbar class="header md-padding" pd-explainer="brandexplainersheet.html" pd-explainer-location="top-right">
+    <h2>Compare Brands</h2>
+    </md-toolbar>
+  </div>
+  <md-tabs md-dynamic-height md-border-bottom md-selected="data.selectedIndex" md-on-select="setselectedindex(0)" md-swipe-content="{{data.oktoswipe}}" flex-gt-md="66" class="whiteout" style="padding-top:0px; overflow-x:hidden">
+    <md-tab md-on-select="processselectedindex(0)" label="SEARCH" style="background-color:white; color:black; overflow-x:none">
+      <div align="right">
+        <md-button  width="85%" md-no-ink class="md-raised md-primary"  ng-click="goto_comparison(selected)" style="margin:3px auto; margin-right: 15px; width: 150px;">Go to Comparison</md-button>
+      </div>
+      <div class="md-padding">
+      <p style="font-size: 15px;">Want to know more about a range of brands and see how your values compare? Hit the ADD TO COMPARE button for up to ten brands and then 
+      <span ng-click="goto_comparison(selected)"><u>go to comparison.</u></span></p>
+        <div layout="row">
+        <div flex-gt-sm="1">
+          <p style="margin-top: 30px; margin-right: 15px; font-size: 20px"><b>Search:</b></p>
+        </div>
+         <div flex-gt-sm="95">
+          <md-input-container> <label>Search for a Brand or product</label> 
+            <input class="form-control" ng-model="query" placeholder="Enter search text here"/>
+          </md-input-container>
+        </div>
+        </div>
+      </div>
+      <div ng-show="showme">
+        <div ng-hide="productsarea"> 
+          <div>
+            <H2>Your search result: <span ng-bind ="query"></span> </H2>
+          </div>
+        </div>
+        <div layout="row" layout-margin layout-wrap layout-align="center left" >
+          <div ng-repeat="org in orgs | orderBy:'name'  | filter:query" style= "margin-top: 7px" layout="column"  >
+            <div layout="row">
+              <md-card class="gametile">           
+                <md-button layout-fill aria-label="{{org.name}}" ng-href="/brandprofile/-1/-/{{org.org_id}}/{{makesafelink(org.name)}}" layout="row" layout-align="start center">
+                  <div layout="row" layout-align="start center"> 
+                    <div align="center" flex="15">
+                      <a ng-href="/brandprofile/-1/-/{{org.org_id}}/{{makesafelink(org.name)}}">
+                        <pd-img class="img-thumbnail" style="width:100%" aspect-ratio="1.0" ng-src="{{imgconfig['org'].base+org.org_pic}}" pd-img-default="{{imgconfig['org'].default}}">
+                      </a>
+                    </div>                  
+                    <div style="width:75%; margin-left: 15px;">
+                      {{org.name}} 
+                    </div>
+                  </div>
+                </md-button>
+              </md-card>
+              <div flex-gt-sm="40" style="margin-left: 5px;">
+                <md-button  width="85%" md-no-ink class="md-raised md-primary"  ng-click="added(org, selected)" style="margin:3px auto; width: 150px;" ng-class="{'hasAddToCart': org.addToCart}">{{org.bname || "Add to Compare"}}</md-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </md-tab>
+    <md-tab md-on-select="processselectedindex(0)" label="FILTER BY CATEGORY" style="background-color:white; color:black; overflow-x:none">
+      <div align="right">
+        <md-button  width="85%" md-no-ink class="md-raised md-primary"  ng-click="goto_comparison(selected)" style="margin:3px auto; margin-right: 15px; width: 150px;">Go to Comparison</md-button>
+      </div>
+      <p style="font-size: 15px;">Want to know more about a range of brands and see how your values compare? Hit the button ADD TO COMPARE for up to ten brands and then 
+      <a  style="cursor:pointer;" ng-click="goto_comparison(selected)">go to comparison</a></p>
+      <div hide-sm hide-md>
+        <div class="md-padding">
+          <md-radio-group layout-gt-sm="row" layout-wrap>
+            <md-card class="gametile" ng-repeat="aproductcat in viewableproductcats">
+              <md-button layout-fill aria-label="{{aproductcat.name}}" ng-href="comparebrands/-1/-/{{aproductcat.id}}/{{makeasafelink(aproduct.name)}}" layout="row" layout-align="start center" ng-click="productcatactivate(aproductcat)">
+               <div layout="row" layout-align="start center"> 
+              <md-radio-button ng-value="aproductcat" ng-click="productcatactivate(aproductcat)"></md-radio-button> 
+              <div style="width:88px; max-width:88px; min-width:88px">
+                  <pd-img ng-src="{{productcatimg(aproductcat)}}" pd-img-default="{{baseimgurl+'img/defaultimages.png.174.100.png'}}" 
+                       natural-width="174" natural-height="100"></pd-img>
+                </div>
+                <div class="selectiontext">{{ aproductcat.name }}</div>
+              </div>
+              </md-button>
+            </md-card>
+          </md-radio-group>
+        </div>
+      </div>
+      <div hide-gt-md>
+        <div class="md-padding" ng-hide="rbutton">
+          <md-radio-group layout-gt-sm="row" layout-wrap>
+            <md-card class="gametile" ng-repeat="aproductcat in viewableproductcats">
+              <md-button layout-fill aria-label="{{aproductcat.name}}" ng-href="comparebrands/-1/-/{{aproductcat.id}}/{{makeasafelink(aproduct.name)}}" layout="row" layout-align="start center" ng-click="productcatactivate(aproductcat)">
+               <div layout="row" layout-align="start center"> 
+              <md-radio-button ng-value="aproductcat" ng-click="productcatactivate(aproductcat)"></md-radio-button> 
+              <div style="width:88px; max-width:88px; min-width:88px">
+                  <pd-img ng-src="{{productcatimg(aproductcat)}}" pd-img-default="{{baseimgurl+'img/defaultimages.png.174.100.png'}}" 
+                       natural-width="174" natural-height="100"></pd-img>
+                </div>
+                <div class="selectiontext">{{ aproductcat.name }}</div>
+              </div>
+              </md-button>
+            </md-card>
+          </md-radio-group>
+        </div>
+      </div>
+      <div ng-show="showme">
+        <div ng-hide="productsarea"> 
+          <div>
+            <H2>You have chosen: <span ng-bind ="currentcategoryname"></span> </H2>
+          </div>
+        </div>
+        <div layout="row" layout-margin layout-wrap layout-align="center left" >
+          <div ng-repeat="org in orgs | choosecategory:currentcategoryselected" style= "margin-top: 7px" layout="column"  >
+            <div layout="column" layout-gt-sm="row" layout-sm="column">
+              
+              <div flex-gt-sm="60" flex="100" name="test">
+              
+              <md-card class="gametile">           
+                <md-button layout-fill aria-label="{{org.name}}" ng-href="/brandprofile/-1/-/{{org.org_id}}/{{makesafelink(org.name)}}"
+                 layout="row" layout-align="start center">
+                 
+                  <div layout="row" layout-align="start center"> 
+                    <div align="center" flex="15">
+                      <a ng-href="/brandprofile/-1/-/{{org.org_id}}/{{makesafelink(org.name)}}">
+                        <pd-img class="img-thumbnail" style="width:100%" aspect-ratio="1.0" ng-src="{{imgconfig['org'].base+org.org_pic}}" pd-img-default="{{imgconfig['org'].default}}">
+                      </a>
+                    </div>                  
+                    <div style="width:75%; margin-left: 15px;">
+                      {{org.name}} 
+                    </div>
+                  </div>
+                </md-button>
+              </md-card>
+              </div>
+              
+              <div flex-gt-sm="40" flex="50" style="margin-left: 5px;layout-align: center end; layout-align-sm:end end">
+                <md-button  width="85%" md-no-ink class="md-raised md-primary"  ng-click="added(org, selected)" style="margin:3px auto; width: 150px;" ng-class="{'hasAddToCart': org.addToCart}">{{org.bname || "Add to Compare"}}</md-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </md-tab>
+  </md-tabs>
+  <div style="margin-bottom:25px">
+        <p>
+        <br><br><br><br>
+          <strong>Brands you're comparing: </strong>
+          <span ng-if="selected.length == 0">No brands selected</span>
+          <span ng-repeat="select in selected track by $index">
+            <span ng-if="$index == 0">{{select.name}}</span>
+            <span ng-if="$index != 0">, {{select.name}}</span>
+          </span>
+        </p>
+        <div align="right">
+        <md-button  width="85%" md-no-ink class="md-raised md-primary"  ng-click="goto_comparison(selected)" style="margin:3px auto; margin-right: 15px; width: 150px;">Go to Comparison</md-button>
+        </div>
+  </div>
+  
+    <div style="margin-bottom:25px">
+    <p class="md-padding">
+    This is a new area of PositionDial, please send any feedback and excuse the layout on mobile, we are working on this.
+    </p>
+    </div>
+</md-content>

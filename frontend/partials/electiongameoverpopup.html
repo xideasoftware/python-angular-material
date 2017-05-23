@@ -1,0 +1,16 @@
+<md-dialog>
+<md-content style="background-color:#fff; padding-bottom:8px" class="outside-border">
+	<div class="pull-right"><i class="fa fa-times" style="font-size:26px; cursor:pointer; padding-right:4px" ng-click="closemodal()"></i></div>
+    <div>
+        <h2>Congratulations!</h2>
+    </div>
+    <p>
+        <span font-size="font-size:0.8em">Congratulations, you've completed your level <span ng-bind="badge.level+1"></span> Election 2015 PositionDial</span>
+    </p>
+    <pd-badge badge="badge" style="margin:auto"></pd-badge>
+	<div style="width:100%; margin:8px auto" class="md-padding" layout="column" layout-gt-sm="row" layout-align="center center" layout-align-gt-sm="center space-around">
+  		<md-button md-no-ink flex class="md-raised md-primary" md-theme="pd" ng-click="closemodal('gopartymatches')" style="margin:6px">see your party matches</md-button> 
+		<md-button ng-show="badge.level < 2" md-no-ink flex class="md-raised md-primary" md-theme="pd" ng-click="closemodal('gogeneratedial')" style="margin:6px">answer some more</md-button>
+	</div>
+</md-content>
+</md-dialog>

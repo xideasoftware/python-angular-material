@@ -1,0 +1,32 @@
+
+<div class="articlearchiveinner" ng-show="articlearchive.length > 0">
+	<div class="welfare2">
+		<span class="heading">Archive</span>
+	</div>
+	<div class="content-line-color" style="margin-bottom: 10px; float: none"></div>
+	<table style="width: 100%">
+		<tbody><tr>
+			<th style="padding: 8px">Headline</th>
+			<th style="padding: 8px">Author</th>
+			<th style="padding: 8px">Source</th>
+		</tr>
+		<tr class="" style="margin-left: 10px; margin-right: auto" ng-repeat="a in articlearchive" ng-class-odd="'archiveodd'">
+			<td class="">
+				<div style="padding: 6px" class="">
+					<a ng-href="{{a.urllink}}">{{a.headline}}
+                                        <img style="height:20px" src="http://images.positiondial.com/images/redarrow100.png" ng-show="!a.onsite"></a>
+				</div>
+			</td>
+			<td class="">
+				<div style="padding: 6px" class="">
+					<a ng-href="{{a.urllink}}">{{a.author.name}}</a>
+				</div>
+			</td>
+			<td class="">
+				<div style="padding: 6px" class="">
+					<a ng-href="{{a.urllink}}">{{a.source}}</a>
+				</div>
+			</td>
+		</tr>
+	</tbody></table>
+</div>
